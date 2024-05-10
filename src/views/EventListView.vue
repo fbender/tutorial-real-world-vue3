@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import EventCard from '@/components/EventCard.vue';
 
 const events = ref([
-{
+  {
     id: 5928101,
     category: 'animal welfare',
     title: 'Cat Adoption Day',
@@ -36,11 +36,11 @@ const events = ref([
     petsAllowed: false,
     organizer: 'Carey Wales',
   },
-]);
+])
 </script>
 
 <template>
-  <h1>Events for Good</h1>
+  <h1>Events For Good</h1>
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event" />
   </div>
