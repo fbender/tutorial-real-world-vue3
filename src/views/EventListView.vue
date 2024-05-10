@@ -1,19 +1,19 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-import EventCard from '@/components/EventCard.vue';
+import { ref, onMounted } from 'vue'
+import EventService from '@/services/EventService.js'
+import EventCard from '@/components/EventCard.vue'
 
-const events = ref(null);
+const events = ref(null)
 
 onMounted(() => {
-  axios.get(
-    'http://my-json-server.typicode.com/fbender/tutorial-real-world-vue3/events'
-  ).then((response) => {
-    events.value = response.data;
-  }).catch((error) => {
-    console.log(error);
-  });
-});
+  EventService.getEvents()
+    .then((response) => {
+      events.value = response.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
 </script>
 
 <template>
