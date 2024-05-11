@@ -1,5 +1,7 @@
 <script setup>
-const props = defineProps(["event"]);
+import { defineProps } from "vue";
+
+defineProps(["event"]);
 </script>
 
 <template>
