@@ -7,6 +7,7 @@ import EventEdit from "@/views/event/Edit.vue";
 import About from "@/views/About.vue";
 import NotFound from "@/views/NotFound.vue";
 import NetworkError from "@/views/NetworkError.vue";
+import { inject } from "vue";
 
 const routes = [
   {
@@ -35,6 +36,7 @@ const routes = [
         path: "edit",
         name: "EventEdit",
         component: EventEdit,
+        meta: { requireAuth: true },
       },
     ],
   },
@@ -70,6 +72,26 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from) => {
+  const GStore = inject("GStore");
+  // start progress bar
+
+  const notAuthorized = true;
+  if (to.meta.requireAuth && notAuthorized) {
+    GStore.flashMessage = "Sorry, you are not authorized to view this page";
+
+    setTimeout(() => {
+      GStore.flashMessage = "";
+    }, 3000);
+
+    if (from.href) {
+      return false;
+    } else {
+      return { path: '/' };
+    }
+  }
 });
 
 export default router;
