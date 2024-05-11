@@ -37,20 +37,15 @@ const routes = [
     ],
   },
   {
-    path: "/event/:nestedInfo(.*)",
-    redirect: to => {
-      return { path: "events/" + to.params.nestedInfo };
+    path: "/event/:afterEvent(.*)",
+    redirect: (to) => {
+      return { path: "/events/" + to.params.afterEvent };
     },
   },
   {
-    path: "/about-us",
+    path: "/about",
     name: "About",
     component: About,
-    //alias: "/about", // (internal) rewrite maps both routes to the same content
-  },
-  {
-    path: "/about",
-    redirect: { name: "About" },
   },
 ];
 
