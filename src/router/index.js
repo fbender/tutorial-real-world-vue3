@@ -38,9 +38,13 @@ const routes = [
   },
   {
     path: "/event/:id",
-    redirect: to => {
-      return { name: "EventDetails", params: { id: to.params.id } };
-    }, // alternative: { name: "EventDetails", props: true },
+    redirect: () => {
+      return { name: "EventDetails" };
+    }, // alternative: { name: "EventDetails" },
+    children: [
+      { path: "register", redirect: () => ({ name: "EventRegister" }) },
+      { path: "edit", redirect: { name: "EventEdit" } },
+    ],
   },
   {
     path: "/about-us",
