@@ -4,10 +4,11 @@ import EventLayout from "@/views/event/Layout.vue";
 import EventDetails from "@/views/event/Details.vue";
 import EventRegister from "@/views/event/Register.vue";
 import EventEdit from "@/views/event/Edit.vue";
-import About from "@/views/About.vue";
 import NotFound from "@/views/NotFound.vue";
 import NetworkError from "@/views/NetworkError.vue";
 import { inject } from "vue";
+
+const About = () => import("@/views/About.vue");
 
 const routes = [
   {
@@ -72,6 +73,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+  scrollBehaviour(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 router.beforeEach((to, from) => {
