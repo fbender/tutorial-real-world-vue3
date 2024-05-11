@@ -1,23 +1,24 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import EventService from '@/services/EventService.js'
-import EventCard from '@/components/EventCard.vue'
+import { ref, onMounted } from "vue";
 
-const events = ref(null)
+import EventService from "@/services/EventService.js";
+import EventCard from "@/components/EventCard.vue";
+
+const events = ref(null);
 
 onMounted(() => {
   EventService.getEvents()
     .then((response) => {
-      events.value = response.data
+      events.value = response.data;
     })
     .catch((error) => {
-      console.log(error)
-    })
-})
+      console.log(error);
+    });
+});
 </script>
 
 <template>
-  <h1>Events For Good</h1>
+  <h1>Events for Good</h1>
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event" />
   </div>
