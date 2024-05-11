@@ -11,10 +11,8 @@ const totalEvents = ref(0);
 
 const page = computed(() => props.page)
 
-const hasNextPage = computed(() => {
-  const totalPages = Math.ceil(totalEvents.value / 2);
-  return page.value < totalPages;
-})
+const totalPages = computed(() => Math.ceil(totalEvents.value / 2));
+const hasNextPage = computed(() => page.value < totalPages.value);
 
 onMounted(() => {
   watchEffect(() => {
@@ -45,6 +43,12 @@ onMounted(() => {
         rel="prev"
         v-if="page != 1"
       >&#60; Previous</router-link>
+  
+      <router-link
+        class="page-link"
+        v-for="pageNo in totalPages"
+        :to="{ name: 'EventList', query: { page: pageNo } }"
+      >{{ pageNo }}</router-link>
   
       <router-link
         id="page-next"
