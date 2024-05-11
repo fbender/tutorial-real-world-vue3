@@ -37,14 +37,10 @@ const routes = [
     ],
   },
   {
-    path: "/event/:id",
-    redirect: () => {
-      return { name: "EventDetails" };
-    }, // alternative: { name: "EventDetails" },
-    children: [
-      { path: "register", redirect: () => ({ name: "EventRegister" }) },
-      { path: "edit", redirect: { name: "EventEdit" } },
-    ],
+    path: "/event/:nestedInfo(.*)",
+    redirect: to => {
+      return { path: "events/" + to.params.nestedInfo };
+    },
   },
   {
     path: "/about-us",
