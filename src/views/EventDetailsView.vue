@@ -1,21 +1,17 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-// import { useRoute } from 'vue-router'
 import EventService from '@/services/EventService.js'
 
 const props = defineProps({
-    id: {
-        // type: Number, // param is passed as String and throws a warning
-        required: true
-    }
+  id: {
+    required: true,
+  },
 })
+
 const event = ref(null)
-// const route = useRoute()
-// const id = ref(route.params.id)
 
 onMounted(() => {
-    // EventService.getEventById(id.value)
-    EventService.getEventById(props.id)
+  EventService.getEvent(props.id)
     .then((response) => {
       event.value = response.data
     })

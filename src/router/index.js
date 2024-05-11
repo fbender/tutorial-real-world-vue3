@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: '/event/:id',
       name: 'event-details',
-      props: true, // pass variable route fragment as prop to component (allows decoupling component from routing logic)
+      props: true,
       component: EventDetailsView,
     },
     {
