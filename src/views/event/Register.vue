@@ -2,15 +2,14 @@
 import { useRouter } from "vue-router";
 import { defineProps } from "vue";
 
-const props = defineProps(["event"]);
+defineProps(["event"]);
 const router = useRouter();
 
 const register = () => {
   // Call to API
   // If registered then redirect to event details
-  router.push({ // use router.replace() if you want to overwrite the last browser history entry
+  router.push({
     name: "EventDetails",
-    id: props.event.id, // explicitly passing ID is not required as we're naviging within the same "parent" route
   });
 };
 </script>
